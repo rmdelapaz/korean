@@ -100,6 +100,14 @@
     <p style="font-size:1.3rem;"><strong>아</strong> = ㅇ + ㅏ = "a" &nbsp;·&nbsp; <strong>오</strong> = ㅇ + ㅗ = "o" &nbsp;·&nbsp; <strong>우</strong> = ㅇ + ㅜ = "u"</p>
 </div>
 
+<h2>🧪 Try It: Build a Syllable</h2>
+
+<p>Hangul syllables aren't looked up in a table — they're <em>computed</em>. Unicode lays out all 11,172 possible blocks in one contiguous run, so any block's code point is arithmetic on its three parts. Pick an initial, a medial, and an optional final, and watch the block assemble.</p>
+
+<div data-widget="composer"></div>
+
+<p class="caption">The formula is <code>0xAC00 + (initial × 21 + medial) × 28 + final</code> — 19 initials, 21 medials, 28 finals (index 0 meaning "no 받침").</p>
+
 <h2>📚 Reading Practice</h2>
 
 <p>Try reading these common words. Sound out each syllable block:</p>
@@ -188,5 +196,7 @@
 <!-- END footer-nav -->
 
 <script src="site-nav.js"></script>
+<script src="audio.js"></script>
+<script src="hangul-lab.js"></script>
 </body>
 </html>
