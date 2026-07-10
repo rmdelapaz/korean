@@ -573,7 +573,7 @@ details[open] > summary { margin-bottom: .5rem; }
 .audio-btn:focus-visible { outline: 2px solid var(--primary-color); outline-offset: 2px; }
 .audio-btn.speaking { color: #fff; background: var(--primary-color); border-color: var(--primary-color); }
 
-html.no-ko-voice .audio-btn { display: none; }
+html.no-tts-voice .audio-btn { display: none; }
 
 .audio-notice {
     display: none;
@@ -585,7 +585,7 @@ html.no-ko-voice .audio-btn { display: none; }
     padding: .6rem .9rem;
     margin: 1rem 0;
 }
-html.no-ko-voice .audio-notice { display: block; }
+html.no-tts-voice .audio-notice { display: block; }
 
 /* ===========================
    Vocal-tract articulation diagrams
