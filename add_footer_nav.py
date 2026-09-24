@@ -46,26 +46,38 @@ import sys
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
-# Lesson order  (taken from index.html course-grid)
+# Lesson order — CANONICAL (see docs/a1-a2-roadmap.md §4). index.html follows this.
 # Tuple: (filename, short_title_used_in_prev/next_link)
 # ---------------------------------------------------------------------------
 LESSONS: list[tuple[str, str]] = [
-    ("korean_hangul_consonants.html",         "Hangul Consonants"),
-    ("korean_hangul_vowels.html",             "Hangul Vowels & Syllable Blocks"),
-    ("korean_pronunciation.html",             "Pronunciation Rules"),
-    ("korean_greetings_essentials.html",      "Greetings & Essential Phrases"),
-    ("korean_numbers_time_dates.html",        "Numbers, Time & Dates"),
-    ("korean_family_descriptions.html",       "Family & Personal Descriptions"),
-    ("korean_food_dining.html",               "Food & Dining"),
-    ("korean_shopping_money.html",            "Shopping & Money"),
-    ("korean_directions_transportation.html", "Directions & Transportation"),
-    ("korean_health_body.html",               "Health & Body"),
-    ("korean_hobbies_daily_life.html",        "Hobbies & Daily Life"),
-    ("korean_work_education.html",            "Work & Education"),
-    ("korean_technology_communication.html",  "Technology & Communication"),
-    ("korean_weather_seasons.html",           "Weather & Seasons"),
-    ("korean_emotions_relationships.html",    "Emotions & Relationships"),
-    ("korean_travel_culture.html",            "Travel & Korean Culture"),
+    ("korean_hangul_consonants.html",                "Hangul Consonants"),
+    ("korean_hangul_vowels.html",                    "Hangul Vowels & Syllable Blocks"),
+    ("korean_pronunciation.html",                    "Pronunciation Rules"),
+    ("korean_greetings_essentials.html",             "Greetings & Essential Phrases"),
+    ("korean_grammar_sentence_basics.html",          "Sentence Basics: 이에요, 은/는 & 이/가"),
+    ("korean_numbers_time_dates.html",               "Numbers, Time & Dates"),
+    ("korean_grammar_present_tense.html",            "Verbs & the Polite Present"),
+    ("korean_family_descriptions.html",              "Family & Personal Descriptions"),
+    ("korean_grammar_particles.html",                "Particles of Place, Time & People"),
+    ("korean_grammar_negation_questions.html",       "Negation & Asking Questions"),
+    ("korean_food_dining.html",                      "Food & Dining"),
+    ("korean_home_daily_routine.html",               "Home, Household & Daily Routine"),
+    ("korean_grammar_speech_levels.html",            "Speech Levels & Honorifics"),
+    ("korean_shopping_money.html",                   "Shopping & Money"),
+    ("korean_grammar_past_tense.html",               "The Past Tense"),
+    ("korean_directions_transportation.html",        "Directions & Transportation"),
+    ("korean_grammar_future_plans.html",             "Wants, Plans & the Future"),
+    ("korean_hobbies_daily_life.html",               "Hobbies & Daily Life"),
+    ("korean_grammar_modals_requests.html",          "Can, Must & May"),
+    ("korean_health_body.html",                      "Health & Body"),
+    ("korean_grammar_irregular_verbs.html",          "Irregular Verbs"),
+    ("korean_weather_seasons.html",                  "Weather & Seasons"),
+    ("korean_grammar_connectors.html",               "Connecting Clauses"),
+    ("korean_work_education.html",                   "Work & Education"),
+    ("korean_grammar_modifiers_comparisons.html",    "Describing: Modifiers & Comparisons"),
+    ("korean_technology_communication.html",         "Technology & Communication"),
+    ("korean_emotions_relationships.html",           "Emotions & Relationships"),
+    ("korean_travel_culture.html",                   "Travel & Korean Culture"),
 ]
 
 # Idempotency sentinels
@@ -114,7 +126,7 @@ def build_footer(prev_file: str | None, prev_title: str | None,
         f"</nav>\n"
         f"\n"
         f'<footer class="site-footer">\n'
-        f"    <p>&copy; 2026 All rights reserved.</p>\n"
+        f"    <p>&copy; 2026 Ray de la Paz. Korean Language Course. All rights reserved.</p>\n"
         f'    <div class="footer-links">\n'
         f'        <a href="https://rays-home.netlify.app/">Ray\'s House of Fun</a>\n'
         f'        <a href="https://rays-home.netlify.app/contact">Contact</a>\n'
@@ -190,7 +202,8 @@ def main() -> int:
             continue
 
         prev = LESSONS[i - 1] if i > 0 else (None, None)
-        nxt  = LESSONS[i + 1] if i < total - 1 else (None, None)
+        # The final lesson hands off to the can-do checklist rather than dead-ending.
+        nxt  = LESSONS[i + 1] if i < total - 1 else ("cando.html", "Can-Do Checklist")
         footer = build_footer(prev[0], prev[1], nxt[0], nxt[1])
 
         original = path.read_text(encoding="utf-8")

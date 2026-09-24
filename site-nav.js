@@ -29,12 +29,17 @@
   }
 
   /* ---- Build header ---- */
+  // Glossary / Can-Do links point at the tier the reader is in.
+  const TIER = /\/intermediate\//.test(location.pathname) ? '/intermediate/' : '/';
   const header = document.createElement('header');
   header.className = 'site-header';
   header.innerHTML = `
     <a href="/index.html" class="site-brand">🇰🇷 Korean Course</a>
     <nav class="nav-links">
-      <a href="/index.html">Lessons</a>
+      <a href="/index.html">A1–A2</a>
+      <a href="/intermediate/index.html">B1–B2</a>
+      <a href="${TIER}glossary.html">Glossary</a>
+      <a href="${TIER}cando.html">Can-Do</a>
       <a href="https://rays-home.netlify.app/" target="_blank" rel="noopener">Ray's House of Fun</a>
       <a href="https://rays-home.netlify.app/contact" target="_blank" rel="noopener">Contact</a>
       <label class="theme-toggle-label">
